@@ -1,35 +1,41 @@
 (defun coeff (term)
+    (car term)
 )
 
 (defun degree (term)
+    (cadr term)
 )
 
 (defun negTerm (term)
+    (- (car term) )
 )
 
-(defun compareTerms (term1, term2)
+(defun compareTerms (term1 term2)
+    (cond
+      ((> (cadr term1) (cadr term2) ) t)
+    )
 )
 
-(defun addTerms
+(defun addTerms ()
 )
 
-(defun mulTerms
+(defun mulTerms ()
 )
 
-(defun normalize
+(defun normalize ()
 )
 
-(defun negPoly
+(defun negPoly ()
 )
 
-(defun addPolys
+(defun addPolys ()
 )
 
-(defun subPolys
+(defun subPolys ()
 )
 
-(defun mulPolys
+(defun mulPolys ()
 )
 
-(defun evalPolys
+(defun evalPolys ()
 )
