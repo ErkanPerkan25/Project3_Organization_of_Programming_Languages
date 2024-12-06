@@ -1,3 +1,8 @@
+; Author: Eric Hansson
+; Date: 12/6/2024
+; Purpose: To calculate polynomials coefficent, degree,
+; calculate polynomials, and to evaluate polynomials
+
 ; Returns the coefficent of a term
 (defun coeff (term)
     (car term)
