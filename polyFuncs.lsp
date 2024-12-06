@@ -7,7 +7,7 @@
 )
 
 (defun negTerm (term)
-    (- (car term) )
+    (list (- (coeff term)) (cadr term) )
 )
 
 (defun compareTerms (term1 term2)
@@ -18,38 +18,76 @@
 
 (defun addTerms (term1 term2)
     (cond
-        ((= (cadr term1) (cadr term2) ) 
-            (cons (+ (car term1) (car term2)) (cons (cadr term1) () ) )
-        )
-        (
-         (cons term1 (cons term2 ()))
-        )
+        ((= (degree term1) (degree term2) ) (list (+ (coeff term1) (coeff term2)) (degree term1) ) )
+        ( (sort (list term1  term2 ) 'howToCompare) )
     )
 )
 
 (defun mulTerms (term1 term2)
     (cons (* (car term1) (car term2)) (cons (+ (cadr term1) (cadr term2)) ()) )
+
 )
 
 (defun howToCompare (l1 l2)
     (> (cadr l1) (cadr l2))
 )
 
-(defun normalize (poly)
-    (sort poly 'howToCompare)
+(defun removeZeros (myPoly)
+    (cond
+        ( (null myPoly) nil)
+        ( (> (coeff (car myPoly)) 0) (cons (car myPoly) (removeZeros (cdr myPoly) ) ) ) 
+        ( (< (coeff (car myPoly)) 0) (cons (car myPoly) (removeZeros (cdr myPoly) ) ) ) 
+        ( (removeZeros(cdr myPoly)) )
+    )
 )
 
-(defun negPoly ()
+
+(defun combineTerms (myPoly)
+    (cond
+        ( (null myPoly) nil) 
+        ( (null (cdr myPoly)) myPoly)
+        ;can add
+        ( (= (degree (car myPoly)) (degree (cadr myPoly)) ) (combineTerms (cons (addTerms (car myPoly) (cadr myPoly)) (cddr myPoly)) ) ) 
+        ; cannot add
+        ( (cons (car myPoly) (combineTerms (cdr myPoly))) )
+    )
 )
 
-(defun addPolys ()
+
+(defun normalize (myPoly)
+    (removeZeros (combineTerms  (sort myPoly 'howToCompare) ) )
 )
 
-(defun subPolys ()
+(defun negPoly (myPoly)
+    (cond
+        ( (null myPoly) nil) 
+        ( (normalize myPoly) (normalize(cons (negTerm (car myPoly) ) (negPoly (cdr myPoly))) ) )
+    )
 )
 
-(defun mulPolys ()
+(defun addPolys (myPoly1 myPoly2)
+    (cond
+        ( (null myPoly1) nil )
+        ( (null myPoly2) nil )
+        ( (normalize (append myPoly1 myPoly2) ) )
+    )
 )
 
-(defun evalPolys ()
+(defun subPolys (myPoly1 myPoly2)
+    (cond
+        ( (null myPoly1) nil )
+        ( (null myPoly2) nil )
+        ( (normalize (append myPoly1 (negPoly myPoly2) ) ) )
+    )
+)
+
+(defun mulPolys (myPoly1 myPoly2)
+    (cond
+        ( (null myPoly1) nil)
+        ( (null myPoly2) nil)
+        ( () )
+    )
+)
+
+(defun evalPolys (poly num)
 )
