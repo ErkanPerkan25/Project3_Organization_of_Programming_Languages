@@ -24,7 +24,8 @@
 )
 
 (defun mulTerms (term1 term2)
-    (cons (* (car term1) (car term2)) (cons (+ (cadr term1) (cadr term2)) ()) )
+    ;(cons (* (car term1) (car term2)) (cons (+ (cadr term1) (cadr term2)) ()) )
+    (list (* (car term1) (car term2)) (+ (cadr term1) (cadr term2)) )
 
 )
 
@@ -81,11 +82,23 @@
     )
 )
 
+(defun foil (term myPoly)
+    (cond
+        ( (null myPoly) nil)
+        ;( (null (cdr myPoly)) myPoly)
+        ;( (null (cdr myPoly)) (foil term (car myPoly)))
+        ;( (null (cdr myPoly)) (list (mulTerms term (car myPoly) )) )
+        ( (cons (mulTerms term (car myPoly)) (foil term (cdr myPoly)) ) ) 
+    )
+)
+
 (defun mulPolys (myPoly1 myPoly2)
     (cond
         ( (null myPoly1) nil)
         ( (null myPoly2) nil)
-        ( () )
+        ( (null (cdr myPoly1)) myPoly1)
+        ( (null (cdr myPoly2)) myPoly1)
+        ( (normalize (append (foil (car myPoly1) myPoly2) (mulPolys (cdr myPoly1) myPoly2))) )
     )
 )
 
