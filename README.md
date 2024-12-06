@@ -37,7 +37,11 @@ Example of polynomial: '( (8 5) (7 3) (-8 2) (3.14 1) (42 0) ) <br>
 - (mulPolys firstPolynomial secondPolynomial)
 - (evalPoly polynomial number)
 
+---
+
 - Any known bugs?
 There are no bugs that is known of.
 
 - Overview of solving project:
+I worked on each functions one by one. And I would try to draw out and handtrace the different functions to make 
+it easier to create the functions. Focus on how to make re-create the functions to work recursively.
