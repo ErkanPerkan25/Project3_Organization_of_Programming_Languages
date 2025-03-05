@@ -1,8 +1,8 @@
-# Project3_Organization_of_Programming_Languages
+# Polynomial calculator writtent in LISP
+**Project3_Organization_of_Programming_Languages** <br>
+Become familiar with basic LISP programming, strengthening recursive coding skills, building a polynomial calculator <br>
 
-Become familiar with basic LISP programming, strengthening recursive coding skills, building a polynomial calculator
-
-## **Eric Hansson**
+Author: **Eric Hansson**
 
 - Platform:<br>
 Arch Linux
